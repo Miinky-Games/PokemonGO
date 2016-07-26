@@ -1,0 +1,9 @@
+RewriteEngine On
+RewriteBase /
+
+RewriteCond %{THE_REQUEST} /web/([^\s?]*) [NC]
+RewriteRule ^ %1 [L,NE,R=302]
+RewriteCond %{HTTPS} !on
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+
+RewriteRule ^((?!web/).*)$ web/$1 [L,NC]
